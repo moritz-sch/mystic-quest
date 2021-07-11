@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>Mystic Quest Editor Manual</title>
+</head>
+
+<body style="margin-left:20px; margin-right:20px; margin-top:20px; margin-bottom:50px;">
+  <h1>Mystic Quest Editor Manual<h1>
+     <h2 style="margin-left:10px;">Introduction</h2>
+       <p style="margin-left:40px;">This editor allows changing many variables pertaining to enemies, bosses, enemy attacks, spells, items, shops and level-ups in Mystic Quest respectively Final Fantasy Adventure respectively Seiken Densetsu. For the most part the program should be self-explanatory, a few parts are not however. Please read this document before starting to use the editor.</p>
+     <h2 style="margin-left:10px;">How to run</h2>
+       <p style="margin-left:40px;">The program requires Java. In Linux use "java -jar (filename)" to run it. In Windows the Java Runtime Environment will probably automatically associate with jar files.</p>  
+     <h2 style="margin-left:10px;">ROM information</h2>
+       <p style="margin-left:40px;">The program works with all versions of the game. When loading a file the editor tries to autodetect which version it is by comparing checksums in the ROM header. If the checksum has been altered it will fail or possibly even suggest a wrong version. In any case the user is asked to confirm.</p>
+     <h2 style="margin-left:10px;">Things You Should Know</h2>
+       <h3 style="margin-left:20px;">General</h3>
+         <p style="margin-left:40px;">If you want to transfer the changes you made in the editor to another ROM, use the "Save to" command. It allows saving from any version to any other. It does not open the file to which you save and does not alter the opened file in any way.</p>
+         <p style="margin-left:40px;">In many cases the values are only base values. For instance the Goblin enemy has a base value of 8 HP, but in-game small random variations occur, so Goblins can have 7 HP or 9 HP.</p>
+         <p style="margin-left:40px;">Most variables can take values from 0 to 255. Exceptions are mentioned below.</p>
+       <h3 style="margin-left:20px;">Enemies</h3>
+         <h4 style="margin-left:30px;">HP</h4>
+           <p style="margin-left:40px;">Must be a multiple of 4 between 4 and 1020. Other values can be entered but when saving the editor will force it to be a valid number.</p>
+         <h4 style="margin-left:30px;">Speed</h4>
+           <p style="margin-left:40px;">The movement speed of enemies. A lower number means a faster speed, except for 0 which is very slow. The slowest moving enemies in the game have a speed of 12, larger values will result in very slow movement speed.</p>
+         <h4 style="margin-left:30px;">Attack</h4>
+           <p style="margin-left:40px;">This is the type of attack an enemy uses, if it uses any. If it is set to "(none)" an enemy won't use any attack. If an attack is set the enemy still may not use it if said enemy is not programmed to use any attacks (for example Rabites have the same attack as Goblins but will never throw knives). Maybe not all attacks will work with all enemies, I have yet to find out.</p>    
+         <h4 style="margin-left:30px;">Immunities</h4>
+           <p style="margin-left:40px;">The player attacks are divided into seven groups, for each of which you can select if an enemy takes damage from it or not. The groups are as follows.</p>
+           <ol style="margin-left:60px;">
+             <li>Excalibur, Nuke</li>
+             <li>Thunder Spear, Lightning</li>
+             <li>Ice Sword</li>
+             <li>Flame Whip, Fire</li>
+             <li>Star (Flail), Mattock</li>
+             <li>Silver Sword</li>
+             <li>Broad Sword, Blood Swoard, Dragon Sword, Rusty Sword, Battle Axe, Zeus Axe, Sickle, Chain, Wind Spear</li>
+           </ol>
+           <p style="margin-left:40px;">The Ice spell is a special case: an enemy is susceptible to it if and only if it is susceptible to both the Ice Sword and Silver Sword.</p>
+         <h4 style="margin-left:30px;">Status Effects</h4>
+           <p style="margin-left:40px;">While this is never used in the original game, it is possible for enemies to cause more than one status effect.</p>
+       <h3 style="margin-left:20px;">Bosses</h3>
+         <h4 style="margin-left:30px;">HP</h4>
+          <p style="margin-left:40px;">Must be a multiple of 16 between 16 and 4080. Other values can be entered but when saving the editor will force it to be a valid number.</p>
+         <h4 style="margin-left:30px;">Speed</h4>
+           <p style="margin-left:40px;">See enemies.</p>
+         <h4 style="margin-left:30px;">Attacks</h4>
+           <p style="margin-left:40px;">See enemies.</p>   
+         <h4 style="margin-left:30px;">Phases</h4>
+           <p style="margin-left:40px;">During battle bosses go through various phases, and several variables can be set independently for each phase. To find out which phase belongs to which number in the editor you will have to try it out, I'm afraid.</p>
+         <h4 style="margin-left:30px;">Status Effects</h4>
+           <p style="margin-left:40px;">Bosses can cause status effects, too, another thing which was not used in the original game. Status effects must be set for each phase individually. Like with enemies multiple status effects are possible.</p>
+       <h3 style="margin-left:20px;">Attacks</h3>
+         <h4 style="margin-left:30px;">Speed</h4>
+           <p style="margin-left:40px;">See enemies.</p>
+       <h3 style="margin-left:20px;">Spells</h3>
+         <h4 style="margin-left:30px;">MP Cost</h4>
+           <p style="margin-left:40px;">Must be a value between 0 and 31.</p>
+       <h3 style="margin-left:20px;">Items</h3>
+         <h4 style="margin-left:30px;">Price</h4>
+           <p style="margin-left:40px;">Maximum value is 65535.</p>
+         <h4 style="margin-left:30px;">Resistances (Shields)</h4>
+           <p style="margin-left:40px;">See <a href="http://www6.plala.or.jp/fom/seiken/bogu.html">http://www6.plala.or.jp/fom/seiken/bogu.html</a> for information on which resistance is which. It is in Japanese but a machine translation should be good enough to understand most of it.</p>
+       <h3 style="margin-left:20px;">Experience</h3>
+         <p style="margin-left:40px;">The program does not check if the sequence of values is increasing. You probably want them to be.</p>
+  <h1>Caveats</h1>
+    <p style="margin-left:40px;">The GUI is a bit wonky. In some cases if you change a value and save the file the value might not be written to the ROM. Go to another field before saving to make sure that it doesn't happen.</p>
+    <p style="margin-left:40px;">Mousewheel scrolling in some subframes is incredibly slow for some reason. Since you can use the scrollbar or the PgUp and PgDn keys there are easy workarounds. Sorry about that.</p>
+</body>
+</html>
